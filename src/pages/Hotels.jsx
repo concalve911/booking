@@ -20,8 +20,7 @@ const Hotels = () => {
   if (status === "failed") {
     return <div>Error: {error}</div>;
   }
-
-  if (!Array.isArray(hotels)) {
+  if (status === "succeeded" && !Array.isArray(hotels.hotels)) {
     return <div>Error: hotels data is not an array</div>;
   }
 
@@ -31,11 +30,12 @@ const Hotels = () => {
         Available Hotels
       </Typography>
       <Grid container spacing={2}>
-        {hotels.map((hotel) => (
-          <Grid item xs={12} sm={6} md={3} key={hotel.id}>
-            <HotelCard hotel={hotel} />
-          </Grid>
-        ))}
+        {status === "succeeded" &&
+          hotels.hotels.map((hotel) => (
+            <Grid item xs={12} sm={6} md={3} key={hotel.id}>
+              <HotelCard hotel={hotel} />
+            </Grid>
+          ))}
       </Grid>
     </Box>
   );
