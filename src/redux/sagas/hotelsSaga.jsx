@@ -1,5 +1,5 @@
 import { call, put, takeLatest } from "redux-saga/effects";
-import axios from "axios"; // Убедитесь, что установлен axios
+import axios from "axios";
 import {
   fetchHotelsRequest,
   fetchHotelsSuccess,
@@ -8,7 +8,6 @@ import {
 
 function* fetchHotelsSaga() {
   try {
-    // Запрос к API
     const response = yield call(
       axios.get,
       "https://booking.free.beeceptor.com/hotels"

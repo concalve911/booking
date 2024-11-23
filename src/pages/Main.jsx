@@ -1,7 +1,7 @@
 import React from "react";
-import { Button, TextField, Box, Typography } from "@mui/material";
-import { Form, Field } from "react-final-form";
-import "./Main.scss";
+import { Box, Typography } from "@mui/material";
+import HotelSearchForm from "../components/HotelSearchForm";
+import "./main.scss";
 
 const Main = () => {
   const onSubmit = (values) => {
@@ -31,102 +31,7 @@ const Main = () => {
         <Typography variant="h4" gutterBottom>
           Search Hotels
         </Typography>
-        <Form
-          onSubmit={onSubmit}
-          validate={validate}
-          render={({ handleSubmit }) => (
-            <form onSubmit={handleSubmit} noValidate>
-              <Box
-                className="search-block"
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: 2,
-                  maxWidth: 400,
-                  margin: "0 auto",
-                }}
-              >
-                <Field name="destination">
-                  {({ input, meta }) => (
-                    <TextField
-                      {...input}
-                      label="Destination"
-                      variant="outlined"
-                      fullWidth
-                      error={meta.touched && meta.error}
-                      helperText={meta.touched && meta.error ? meta.error : ""}
-                    />
-                  )}
-                </Field>
-
-                <Field name="checkin" type="date">
-                  {({ input, meta }) => (
-                    <TextField
-                      {...input}
-                      label="Check-in"
-                      type="date"
-                      InputLabelProps={{ shrink: true }}
-                      variant="outlined"
-                      fullWidth
-                      error={meta.touched && meta.error}
-                      helperText={meta.touched && meta.error ? meta.error : ""}
-                    />
-                  )}
-                </Field>
-
-                <Field name="checkout" type="date">
-                  {({ input, meta }) => (
-                    <TextField
-                      {...input}
-                      label="Check-out"
-                      type="date"
-                      InputLabelProps={{ shrink: true }}
-                      variant="outlined"
-                      fullWidth
-                      error={meta.touched && meta.error}
-                      helperText={meta.touched && meta.error ? meta.error : ""}
-                    />
-                  )}
-                </Field>
-
-                <Field name="adults" type="number">
-                  {({ input, meta }) => (
-                    <TextField
-                      {...input}
-                      label="Adults"
-                      variant="outlined"
-                      fullWidth
-                      error={meta.touched && meta.error}
-                      helperText={meta.touched && meta.error ? meta.error : ""}
-                    />
-                  )}
-                </Field>
-
-                <Field name="children" type="number">
-                  {({ input, meta }) => (
-                    <TextField
-                      {...input}
-                      label="Children"
-                      variant="outlined"
-                      fullWidth
-                      error={meta.touched && meta.error}
-                      helperText={meta.touched && meta.error ? meta.error : ""}
-                    />
-                  )}
-                </Field>
-
-                <Button
-                  variant="contained"
-                  color="primary"
-                  type="submit"
-                  fullWidth
-                >
-                  Submit
-                </Button>
-              </Box>
-            </form>
-          )}
-        />
+        <HotelSearchForm onSubmit={onSubmit} validate={validate} />
       </Box>
     </div>
   );
