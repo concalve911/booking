@@ -10,7 +10,7 @@ import { Form, Field } from "react-final-form";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchHotelsRequest } from "../redux/slices/hotelsSlice";
 
-const HotelSearchForm = ({ onSubmit, validate }) => {
+const HotelSearchForm = ({ onSubmit }) => {
   const dispatch = useDispatch();
   const { list: hotels, status } = useSelector((state) => state.hotels);
 
@@ -42,6 +42,14 @@ const HotelSearchForm = ({ onSubmit, validate }) => {
 
     if (!values.adults) {
       errors.adults = "Number of adults is required";
+    } else if (values.adults < 0) {
+      errors.adults = "Number of adults cannot be negative";
+    }
+
+    if (!values.children) {
+      errors.children = "Number of children is required";
+    } else if (values.children < 0) {
+      errors.children = "Number of children cannot be negative";
     }
 
     return errors;
@@ -104,6 +112,7 @@ const HotelSearchForm = ({ onSubmit, validate }) => {
                 />
               )}
             </Field>
+
             <Field name="checkout" type="date">
               {({ input, meta }) => (
                 <TextField
@@ -118,6 +127,7 @@ const HotelSearchForm = ({ onSubmit, validate }) => {
                 />
               )}
             </Field>
+
             <Field name="adults" type="number">
               {({ input, meta }) => (
                 <TextField
@@ -130,6 +140,7 @@ const HotelSearchForm = ({ onSubmit, validate }) => {
                 />
               )}
             </Field>
+
             <Field name="children" type="number">
               {({ input, meta }) => (
                 <TextField
@@ -142,6 +153,7 @@ const HotelSearchForm = ({ onSubmit, validate }) => {
                 />
               )}
             </Field>
+
             <Button
               variant="contained"
               color="primary"
